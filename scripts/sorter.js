@@ -26,7 +26,7 @@ class Sorter {
         while(swapped) {
             swapped = false;
             for(let i = 0; i < this.a.length - 1; i++) {
-                if (a[i] > a[i + 1]) {
+                if (this.a[i] > this.a[i + 1]) {
                     // swap
                     let t = this.a[i];
                     this.a[i] = this.a[i + 1];

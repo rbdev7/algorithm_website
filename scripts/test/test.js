@@ -7,14 +7,14 @@
 // Import our ColorIncreaser class.
 //const ColorIncreaser = require('../sketch.js');
 
-function mockColor(red, green, blue, alpha) {
+/* function mockColor(red, green, blue, alpha) {
     // Mock of the color class from p5
     this.levels = [];
     this.levels[0] = red;
     this.levels[1] = green;
     this.levels[2] = blue;
     this.levels[3] = alpha;
-}
+} */
 
 describe('Sorter tests', function() {
     // Will hold the reference to the ColorIncreaser class.
@@ -36,10 +36,15 @@ describe('Sorter tests', function() {
         done();
     });
 
+    it('should have an empty array', function(done) {
+        chai.expect(sorter.a).to.be.an('array').that.is.empty;
+        done();
+    });
+
     it('should generate initial random values in an array', function(done) {
-        chai.expect(sorter.a.length).to.be.equal(0);
+        chai.expect(sorter.a).to.have.lengthOf(0);
         sorter.generateNumbers(5,10);
-        chai.expect(sorter.a.length).to.be.equal(5);
+        chai.expect(sorter.a).to.have.lengthOf(5);
         let a = sorter.a;
         sorter.generateNumbers(5,10);
         chai.expect(sorter.a.length).to.be.equal(5);
@@ -47,6 +52,22 @@ describe('Sorter tests', function() {
         done();
     });
 
+    it('should sort random numbers in an array from lowest to heighest', function(done) {
+        let num = 5;
+        sorter.generateNumbers(num,10);
+        
+        // Create a bubble sort object from the bubbleSort generator function.
+        let bSort = sorter.bubbleSort(); 
+        let msg = bSort.next();
+        while(!msg.done) {
+            msg = bSort.next();
+        }
+
+        for(let i=0; i<num-1; i++) {
+            chai.expect(sorter.a[i+1]).to.be.least(sorter.a[i]); 
+        }
+        done();
+    });
     /* it('should have rgb values 255, 0, 0 after calling increaseFillColor 255 times', function(done) {
         // it is 256^1 - 1 because it starts with the colour black.
         for(let count = 0; count < 255; count += 1) {
