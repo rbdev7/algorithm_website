@@ -25,7 +25,7 @@ describe('Sorter tests', function() {
     // test you create instead of running just once before the draw loop.
     // beforeEach lets you setup the objects you want to test in an easy fashon.
     beforeEach(function() {
-        let a = [];
+        //let a = [];
         //let colorValueIncrease = 1;
         //let fillColor = new mockColor(0, 0,  0, 255);
         sorter = new Sorter();
@@ -36,16 +36,18 @@ describe('Sorter tests', function() {
         done();
     });
 
-    /* it('should store initial values without mutation', function(done) {
-        chai.expect(colorIncreaser.colorValueIncrease).to.be.equal(1);
-        chai.expect(colorIncreaser.fillColor.levels[0]).to.equal(0);
-        chai.expect(colorIncreaser.fillColor.levels[1]).to.equal(0);
-        chai.expect(colorIncreaser.fillColor.levels[2]).to.equal(0);
-        chai.expect(colorIncreaser.fillColor.levels[3]).to.equal(255);
+    it('should generate initial random values in an array', function(done) {
+        chai.expect(sorter.a.length).to.be.equal(0);
+        sorter.generateNumbers(5,10);
+        chai.expect(sorter.a.length).to.be.equal(5);
+        let a = sorter.a;
+        sorter.generateNumbers(5,10);
+        chai.expect(sorter.a.length).to.be.equal(5);
+        chai.expect(sorter.a).to.not.be.equal(a);
         done();
     });
 
-    it('should have rgb values 255, 0, 0 after calling increaseFillColor 255 times', function(done) {
+    /* it('should have rgb values 255, 0, 0 after calling increaseFillColor 255 times', function(done) {
         // it is 256^1 - 1 because it starts with the colour black.
         for(let count = 0; count < 255; count += 1) {
             colorIncreaser.increaseFillColor();

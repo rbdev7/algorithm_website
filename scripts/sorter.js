@@ -7,11 +7,12 @@ class Sorter {
      * Function to generate an array of random numbers.
      * 
      * @param {Integer} num Number of random numbers to generate.
+     * @param {Integer} maxHeight Maximum value, provided by P5.js "height" keyword.
      */
-    generateNumbers(num) {
+    generateNumbers(num, maxHeight) {
         this.a = [];
         for(let i=0; i < num; i++) {
-            this.a[i] = Math.floor(Math.random() * height);
+            this.a[i] = Math.floor(Math.random() * maxHeight);
         }
     }
 
