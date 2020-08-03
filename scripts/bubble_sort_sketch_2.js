@@ -1,7 +1,9 @@
-let a = [];
+// Used in Node.js.
+//const Sorter = require("./sorter");
+
 let w;
-let h;
 let sorter;
+let bSorter;
 let t0;
 let t1;
 let paddingWidth = 60;
@@ -12,7 +14,6 @@ let button;
 let pause = true;
 
 function setup() {
-    //var cnv = createCanvas(1000, 500);
     var cnv = createCanvas(windowWidth - paddingWidth, windowHeight - paddingHeight);
     // Set the canvas to be displayed in a div with id="scetch".
     cnv.parent("sketch");
@@ -21,22 +22,22 @@ function setup() {
 
     buffer.background(0);
     buffer.noStroke();
-    generateNumbers(30);
-    w = (width) / a.length;
-    //w = Math.floor((windowWidth) / a.length);
-    h = height;
+
+    sorter = new Sorter();
+    sorter.generateNumbers(30,height);
+
+    w = (width) / sorter.a.length;
 
     frameRate(60);
     
     drawBars();
-    sorter = bubbleSort();
+    bSorter = sorter.bubbleSort();
 
     inpLabel = createElement('p','Number of items to sort');
     inpLabel.parent("sketch");
 
     // Create a button to control to allow the user to start and pause the program.
     button = createButton("Start", "btn1");
-    //button.position(30,height + 20);
     button.class('w3-button w3-round w3-ripple w3-theme');
     button.mousePressed(btnPressed);
     button.parent("sketch");
@@ -47,7 +48,6 @@ function setup() {
     inp.style('width:10%; display:inline-block');
     inp.attribute('type','number');
     inp.input(inputChanged);
-    //inp.position(button.x + button.width,button.y);
 
     noLoop();
 }
@@ -78,10 +78,10 @@ function btnPressed() {
         else {
             done = false;
             pause = false;
-            generateNumbers(parseInt(inp.value()));
-            sorter = bubbleSort();
+            sorter.generateNumbers(parseInt(inp.value()),height);
+            bSorter = sorter.bubbleSort();
             button.html("Pause");
-            w = (width) / a.length;
+            w = (width) / sorter.a.length;
             t0 = performance.now();
             loop();
         }
@@ -91,17 +91,17 @@ function btnPressed() {
 function draw() {
     buffer.background(0);
     drawBars();
-    if(sorter.next().done) {
+    if(bSorter.next().done) {
         if(!done) {
             t1 = round(performance.now() - t0) / 1000;
             print("Done!");
-            print(`Bubble sorted ${a.length} items in ${t1} seconds.`);
+            print(`Bubble sorted ${sorter.a.length} items in ${t1} seconds.`);
             done = true;
             button.html("Start");
         }
         buffer.textSize(width / 30);
         buffer.fill(0,0,255);
-        buffer.text(`Sorted ${a.length} items in ${t1} seconds.`,(width/2)/2,height/2);
+        buffer.text(`Sorted ${sorter.a.length} items in ${t1} seconds.`,(width/2)/2,height/2);
         noLoop();
     }
     image(buffer, 0, 0);
@@ -109,8 +109,7 @@ function draw() {
 
 function windowResized() {
     resizeCanvas(windowWidth - paddingWidth, windowHeight - paddingHeight);
-    w = (width) / a.length;
-    h = height;
+    w = (width) / sorter.a.length;
     buffer = createGraphics(width, height);
 
     // Change the width of the input if the window size changes
@@ -123,18 +122,6 @@ function windowResized() {
   }
 
 /**
- * Function to generate an array of random numbers.
- * 
- * @param {Integer} num Number of random numbers to generate.
- */
-function generateNumbers(num) {
-    a = [];
-    for(let i=0; i < num; i++) {
-        a[i] = Math.floor(Math.random() * height);
-    }
-}
-
-/**
  * Funtion to draw the bars representing the random numbers.
  */
 function drawBars() {
@@ -142,7 +129,7 @@ function drawBars() {
     let x= 0;
     let red = false;
 
-    a.forEach((value, index) => {
+    sorter.a.forEach((value, index) => {
         buffer.rect(x, height - value, w, value);
         //rect(x, (height - value)/2, w, value);
         x += w;
@@ -154,27 +141,4 @@ function drawBars() {
             red = true;
         }
     });
-}
-
-/**
- * Implementation of the bubble sort algorithm.
- * This function is a generator function.  This allows the function to be
- * stopped (using 'yield') part way through execution and resumed (using 'next()').
- */
-function* bubbleSort() {
-    let swapped=true;
-    while(swapped) {
-        swapped = false;
-        for(let i = 0; i < a.length - 1; i++) {
-            if (a[i] > a[i + 1]) {
-                // swap
-                let t = a[i];
-                a[i] = a[i + 1];
-                a[i + 1] = t;
-                swapped = true
-            }
-            yield;
-        }
-    }
-    
 }
