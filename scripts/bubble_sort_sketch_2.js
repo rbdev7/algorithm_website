@@ -52,6 +52,10 @@ function setup() {
     inp.input(inputChanged);
 
     algoImg = document.getElementById('Algorithm_img');
+    
+    if(windowWidth < 548) {
+        document.getElementById('sketch').style.marginTop = "200px";
+    }
 
     noLoop();
 }
