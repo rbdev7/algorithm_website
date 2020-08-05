@@ -12,13 +12,11 @@ let done = false;
 let buffer;
 let button;
 let pause = true;
-let algoImg;
 
 function setup() {
     var cnv = createCanvas(windowWidth - paddingWidth, windowHeight - paddingHeight);
     // Set the canvas to be displayed in a div with id="scetch".
     cnv.parent("sketch");
-    //cnv.position(50, 50);
     
     buffer = createGraphics(width, height);
 
@@ -50,12 +48,6 @@ function setup() {
     inp.style('width:10%; display:inline-block');
     inp.attribute('type','number');
     inp.input(inputChanged);
-
-    algoImg = document.getElementById('Algorithm_img');
-    
-    if(windowWidth < 548) {
-        document.getElementById('sketch').style.marginTop = "200px";
-    }
 
     noLoop();
 }
@@ -123,15 +115,11 @@ function windowResized() {
     // Change the width of the input if the window size changes
     if(windowWidth > 548) {
         inp.style('width:10%; display:inline-block');
-        document.getElementById('sketch').style.marginTop = "110px";
         algoImg.style.width = 'width:60%';
-        algoImg.style.height = 'height:60%';
     }
     else {
         inp.style('width:20%; display:inline-block');
-        document.getElementById('sketch').style.marginTop = "200px";
         algoImg.style.width = 'width:100%';
-        algoImg.style.height = 'height:100%';
     }
   }
 
