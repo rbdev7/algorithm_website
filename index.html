@@ -12,11 +12,21 @@
     <style> body {padding: 10; margin: 0;} </style>
   </head>
   <body>
-    <header class='w3-container w3-theme w3-card w3-top'>
+    <header class='w3-container w3-theme w3-card'>
       <h1>Algorithms</h1>
        <!-- Navigation bar -->
       <div class="w3-bar w3-theme">
-        <a href="index.html" class="w3-bar-item w3-button w3-blue w3-mobile">Home</a>
+        <a href="index.html" class="w3-bar-item w3-button w3-blue">Home</a>
+        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-mobile">Search</a>
+        <div class='w3-dropdown-hover w3-hide-small w3-mobile'>
+            <button class='w3-button'>Sort</button>
+            <div class='w3-dropdown-content w3-bar-block w3-card-4'>
+                <a href="bubble_sort.html" class="w3-bar-item w3-button w3-mobile">Bubble Sort</a>
+            </div>
+        </div>
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="mobileFunction()">&#9776;</a>
+      </div>
+      <div id="mobile" class="w3-bar-block w3-theme w3-hide w3-hide-large w3-hide-medium">
         <a href="#" class="w3-bar-item w3-button w3-mobile">Search</a>
         <div class='w3-dropdown-hover w3-mobile'>
             <button class='w3-button'>Sort</button>
@@ -25,6 +35,16 @@
             </div>
         </div>
       </div>
+      <script>
+        function mobileFunction() {
+          var x = document.getElementById("mobile");
+          if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+          } else { 
+            x.className = x.className.replace(" w3-show", "");
+          }
+        }
+        </script>
     </header>
    
     <div class='w3-content' style='margin-top:180px;'>
