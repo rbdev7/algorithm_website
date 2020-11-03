@@ -46,4 +46,4 @@ class Sorter {
     } 
 }
 
-module.exports = Sorter;
+//module.exports = Sorter;
