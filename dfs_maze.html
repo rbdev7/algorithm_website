@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Depth First Search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-cyan.css">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.min.js"></script>
+    <!-- <script language="javascript" type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/addons/p5.dom.min.js"></script> -->
+    
+    <style> body {padding: 10; margin: 0;} </style>
+  </head>
+  <body>
+    <header class='w3-container w3-theme w3-card'>
+        <h1>Depth First Search</h1>
+      <!-- Navigation bar -->
+    <div class="w3-bar w3-theme">
+      <a href="index.html" class="w3-bar-item w3-button">Home</a>
+      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-mobile">Search</a>
+      <div class='w3-dropdown-hover w3-hide-small w3-mobile'>
+          <button class='w3-button'>Sort</button>
+          <div class='w3-dropdown-content w3-bar-block w3-card-4'>
+              <a href="bubble_sort.html" class="w3-bar-item w3-button w3-mobile w3-blue">Bubble Sort</a>
+          </div>
+      </div>
+      <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="mobileFunction()">&#9776;</a>
+    </div>
+    <div id="mobile" class="w3-bar-block w3-theme w3-hide w3-hide-large w3-hide-medium">
+      <a href="#" class="w3-bar-item w3-button w3-mobile">Search</a>
+      <div class='w3-dropdown-hover w3-mobile'>
+          <button class='w3-button'>Sort</button>
+          <div class='w3-dropdown-content w3-bar-block w3-card-4'>
+              <a href="bubble_sort.html" class="w3-bar-item w3-button w3-blue w3-mobile">Bubble Sort</a>
+          </div>
+      </div>
+    </div>
+    <script>
+      function mobileFunction() {
+        var x = document.getElementById("mobile");
+        if (x.className.indexOf("w3-show") == -1) {
+          x.className += " w3-show";
+        } else { 
+          x.className = x.className.replace(" w3-show", "");
+        }
+      }
+      </script>
+    </header>
+    
+    <div></div>
+    <div id='sketch' class='w3-container w3-padding-16'>
+        <script language="javascript" type="text/javascript" src="scripts/Cell.js"></script>
+        <script language="javascript" type="text/javascript" src="scripts/Searcher.js"></script>
+        <script language="javascript" type="text/javascript" src="scripts/dfs_maze.js"></script>
+      <!-- <button id='btnStart' class='w3-button w3-round w3-ripple w3-theme'>Start</button> -->
+      <div id='sketchInput' class='w3-container'></div>
+    </div>
+    <div class='w3-container w3-theme-l5'>
+      <article class='w3-container w3-theme-l5 w3-margin-left w3-margin-right'>
+        <section class='w3-section'>
+            <h1>Depth First Search Algorithm</h1>
+            <h2>Introduction</h2>
+            <p>
+              The Depth First Search algorithm is a method used to search a graph data structure.  
+              From a selected starting node the algorithm searches through a branch until it can go no further.  
+              Once an end node is reached on a branch the algorithm back tracks until it reaches another unvisited branch and then continues to search.  The algorithm accomplishes backtracking by utilising the stack data structure.  
+              The search finishes once the node in the graph is found or all branches and nodes have been visited.
+            </p>
+            <p>
+              In the above example program the Depth First Search algorithm is used to both generate the maze and to solve it.  Once the maze is generated an end point (denoted by the red square) can be selected and the Depth First Search algorithm will be used to discover a path from the start point to the selected end point.
+            </p>
+            <h2>The Algorithm</h2>
+          <div class='w3-container'>
+            <div class='w3-card-2 w3-center'>
+              <img id='Algorithm_img' src='images/DFS UML Activity Diagram.png' alt='Bubble Sort UML Activity Diagram' style='width:60%; height:auto;'>
+            </div>
+          </div>
+          <h2>Analysis</h2>
+        </section>
+      </article>
+    </div>
+    <footer class='w3-container w3-theme w3-card w3-bottom'>
+      <p>&copy Roy A Burgess</p>
+    </footer>
+  </body>
+</html>
