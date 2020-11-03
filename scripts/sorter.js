@@ -1,3 +1,10 @@
+/**
+ * @author Roy Burgess
+ * @date 18/07/2020
+ * @version 1.0
+ * @class
+ * @classdesc Class to implement sorting algorithms.
+ */
 class Sorter {
     constructor() {
         this.a = [];

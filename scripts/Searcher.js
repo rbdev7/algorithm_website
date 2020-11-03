@@ -2,7 +2,8 @@
  * @author Roy Burgess
  * @date 03/11/2020
  * @version 1.0
- * @description Searcher class to execute search algorithms on an array of Cell objects.
+ * @class
+ * @classdesc Searcher class to execute search algorithms on an array of Cell objects.
  */
 class Searcher {
     constructor() {

@@ -1,3 +1,10 @@
+/**
+ * @author Roy Burgess
+ * @date 18/07/2020
+ * @version 1.0
+ * @description Program to visualise the bubble sort algorithm.
+ */
+
 // Used in Node.js.
 //const Sorter = require("./sorter");
 
@@ -13,6 +20,9 @@ let buffer;
 let button;
 let pause = true;
 
+/**
+ * @description Main setup function to initalise the canvas, buffer, and Sorter object.
+ */
 function setup() {
     var cnv = createCanvas(windowWidth - paddingWidth, windowHeight - paddingHeight);
     // Set the canvas to be displayed in a div with id="scetch".
@@ -52,10 +62,15 @@ function setup() {
     noLoop();
 }
 
+/**
+ * @description Listner function to detect when the input text has changed.
+ */
 function inputChanged() {
     done=true;
 }
-
+/**
+ * @description Listner function for a button press.
+ */
 function btnPressed() {
     // Check input is valid
     if(inp.value() == "") {
@@ -88,6 +103,9 @@ function btnPressed() {
     }
 }
 
+/**
+ * @description The main loop for the program.  Initiates and updates the drawing of the sorter visualisation.
+ */
 function draw() {
     buffer.background(0);
     drawBars();
@@ -107,6 +125,9 @@ function draw() {
     image(buffer, 0, 0);
 }
 
+/**
+ * @description Listner function that resizes the canvas when the window is resized.
+ */
 function windowResized() {
     resizeCanvas(windowWidth - paddingWidth, windowHeight - paddingHeight);
     w = (width) / sorter.a.length;
@@ -124,7 +145,7 @@ function windowResized() {
   }
 
 /**
- * Funtion to draw the bars representing the random numbers.
+ * @description Funtion to draw the bars representing the random numbers.
  */
 function drawBars() {
     buffer.fill(255, 0, 0);
