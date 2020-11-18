@@ -1,19 +1,21 @@
 /**
  * @author Roy Burgess
- * @date 03/11/2020
- * @version 1.0
+ * @date 18/11/2020
+ * @version 1.1
  * @description A program to visualise the Depth First Search algorithm in the form of 
  * maze generation and solving.
  */
 
 let searcher;
-let cellSize = 50;
+let cellSize = 20;
 let halfCellSize = cellSize / 2;
 let quarterCellSize = halfCellSize / 2;
 let canvasDimensions = [1400, 500];
 let generated = false;
 let toFind;
 let drawMouseOver = false;
+let paddingWidth = 60;
+let paddingHeight = 270;
 
 /**
  * @description Displays the cell walls and coloured squares inside marked cells
@@ -101,24 +103,24 @@ function reset() {
 }
 
 /**
- * @description Main setup function to initalise the canvas, buffer, and Searcher object.
+ * @description Function to set canvas dimensions and cell size depending on window size.
  */
-function setup() {
-    var cnv = createCanvas(canvasDimensions[0], canvasDimensions[1]);
-    // Set the canvas to be displayed in a div with id="scetch".
-    cnv.parent("sketch");
-    
-    // Mouse listeners
-    cnv.mouseMoved(selectCell);
-    cnv.mousePressed(setToFind);
+function setCanvasDimensions() {
+    if(windowWidth < 500) {
+        canvasDimensions[0] = 400;
+        cellSize = 20;
+    }
+    else {
+        canvasDimensions[0] = 1400;
+        cellSize = 50;
+    }
+     
+}
 
-    // Create a buffer with the dimensions of the canvas.
-    buffer = createGraphics(width, height);
-
-    frameRate(60);
-
-    searcher = new Searcher();
-
+/**
+ * @description Setup function for the Searcher object.
+ */
+function setupSearcher() {
     // Cells setup
     let i = 0;
     for (let y = 0; y < height; y += cellSize) {
@@ -134,6 +136,45 @@ function setup() {
     searcher.currentCell = 0;
     searcher.stack.push(searcher.currentCell);
     searcher.cells[searcher.currentCell].visited = true;
+}
+
+/**
+ * @description Main setup function to initalise the canvas, buffer, and Searcher object.
+ */
+function setup() {
+    setCanvasDimensions();
+    var cnv = createCanvas(canvasDimensions[0], canvasDimensions[1]);
+    //var cnv = createCanvas(windowWidth - paddingWidth, windowHeight);
+    // Set the canvas to be displayed in a div with id="scetch".
+    cnv.parent("sketch");
+    
+    // Mouse listeners
+    cnv.mouseMoved(selectCell);
+    cnv.mousePressed(setToFind);
+
+    // Create a buffer with the dimensions of the canvas.
+    buffer = createGraphics(width, height);
+
+    frameRate(60);
+
+    searcher = new Searcher();
+    setupSearcher();
+}
+
+/**
+ * @description Listner function that resizes the canvas when the window is resized.
+ */
+function windowResized() {
+    setCanvasDimensions();
+    //resizeCanvas(windowWidth - paddingWidth, windowHeight - paddingHeight);
+    resizeCanvas(canvasDimensions[0], canvasDimensions[1]);
+    
+    buffer = createGraphics(width, height);
+    generated = false;
+    searcher = new Searcher();
+    setupSearcher();
+    //draw();
+    loop();
 }
 
 /**
