@@ -1,7 +1,7 @@
 /**
  * @author Roy Burgess
- * @date 18/11/2020
- * @version 1.1
+ * @date 19/11/2020
+ * @version 1.2
  * @description A program to visualise the Depth First Search algorithm in the form of 
  * maze generation and solving.
  */
@@ -10,7 +10,7 @@ let searcher;
 let cellSize = 20;
 let halfCellSize = cellSize / 2;
 let quarterCellSize = halfCellSize / 2;
-let canvasDimensions = [1400, 500];
+let canvasDimensions = [1400, 520];
 let generated = false;
 let toFind;
 let drawMouseOver = false;
@@ -106,15 +106,12 @@ function reset() {
  * @description Function to set canvas dimensions and cell size depending on window size.
  */
 function setCanvasDimensions() {
-    if(windowWidth < 500) {
-        canvasDimensions[0] = 400;
+    canvasDimensions[0] = (windowWidth - 32)-((windowWidth - 32) % cellSize) - 20;
+    if(canvasDimensions[0] > 400) {
+        cellSize = 40;
+    } else {
         cellSize = 20;
     }
-    else {
-        canvasDimensions[0] = 1400;
-        cellSize = 50;
-    }
-     
 }
 
 /**
