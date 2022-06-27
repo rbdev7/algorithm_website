@@ -29,10 +29,11 @@ class Sorter {
      * stopped (using 'yield') part way through execution and resumed (using 'next()').
      */
     * bubbleSort() {
-        let swapped=true;
+        let swapped = true;
+        let end = this.a.length - 1;
         while(swapped) {
             swapped = false;
-            for(let i = 0; i < this.a.length - 1; i++) {
+            for(let i = 0; i < end; i++) {
                 if (this.a[i] > this.a[i + 1]) {
                     // swap
                     let t = this.a[i];
@@ -42,6 +43,7 @@ class Sorter {
                 }
                 yield;
             }
+            end--;
         }
     } 
 }
