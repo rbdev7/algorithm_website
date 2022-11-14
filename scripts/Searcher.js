@@ -24,7 +24,7 @@ class Searcher {
     findUnvisitedNeighbours(cellNo, withWalls) {
         let found = [];
         if(cellNo >= 0 && cellNo <= this.cells.length) {
-            let stride = width/cellSize;
+            let stride = Math.round(width/cellSize);
             if(!withWalls) {
                 if(cellNo > stride - 1) {
                     // top
@@ -98,21 +98,23 @@ class Searcher {
      * @param {Integer} direction 
      */
     removeCellWalls(cellNo, direction) {
+        let stride = Math.round(width / cellSize);
+        
         // Remove current cell wall
         this.cells[this.currentCell].walls[direction] = false;
         // Remove neighbour cell wall
         switch(direction) {
             case 0:
-                this.cells[cellNo - width/cellSize].walls[2] = false;
-                this.cells[cellNo - width/cellSize].visited = true;
+                this.cells[cellNo - stride].walls[2] = false;
+                this.cells[cellNo - stride].visited = true;
                 break;
             case 1:
                 this.cells[cellNo+1].walls[3] = false;
                 this.cells[cellNo+1].visited = true;
                 break;
             case 2:
-                this.cells[cellNo + width/cellSize].walls[0] = false;
-                this.cells[cellNo + width/cellSize].visited = true;
+                this.cells[cellNo + stride].walls[0] = false;
+                this.cells[cellNo + stride].visited = true;
                 break;
             case 3:
                 this.cells[cellNo-1].walls[1] = false;
@@ -131,13 +133,13 @@ class Searcher {
     
         switch(direction) {
             case 0:
-                return cellNo - width/cellSize;
+                return cellNo - Math.round(width/cellSize);
                 break;
             case 1:
                 return cellNo+1;
                 break;
             case 2:
-                return cellNo + width/cellSize;
+                return cellNo + Math.round(width/cellSize);
                 break;
             case 3:
                 return cellNo-1;
