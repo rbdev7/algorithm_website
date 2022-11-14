@@ -106,8 +106,9 @@ function reset() {
  * @description Function to set canvas dimensions and cell size depending on window size.
  */
 function setCanvasDimensions() {
+    // Subtract the modulus of windowWidth minus padding from the windowWidth minus padding.
     canvasDimensions[0] = (windowWidth - 32)-((windowWidth - 32) % cellSize) - 20;
-    if(canvasDimensions[0] > 400) {
+    if(windowWidth > 400) {
         cellSize = 40;
     } else {
         cellSize = 20;
