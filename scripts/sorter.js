@@ -27,6 +27,12 @@ class Sorter {
      * Implementation of the bubble sort algorithm.
      * This function is a generator function.  This allows the function to be
      * stopped (using 'yield') part way through execution and resumed (using 'next()').
+     * 
+     * @description
+     * Worst Time Complexity: O(n^2)
+     * Average Time Complexity: O(n^2)
+     * Best Time Complexity: O(n)
+     * Space Complexity: O(1)
      */
     * bubbleSort() {
         let swapped = true;
@@ -49,6 +55,12 @@ class Sorter {
     
     /**
      * Implementation of the Selection Sort algorithm.
+     * 
+     * @description 
+     * Worst Time Complexity: O(n^2)
+     * Average Time Complexity: O(n^2)
+     * Best Time Complexity: O(n^2)
+     * Space Complexity: O(1)
      */
     selectionSort() {
         const n = this.a.length;
