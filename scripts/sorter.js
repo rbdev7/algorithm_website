@@ -45,7 +45,28 @@ class Sorter {
             }
             end--;
         }
-    } 
+    }
+    
+    /**
+     * Implementation of the Selection Sort algorithm.
+     */
+    selectionSort() {
+        const n = this.a.length;
+        for (let i = 0; i < n - 1; i++) {
+            let minIndex = i;
+            for (let j = i + 1; j < n; j++) {
+                if (this.a[j] < this.a[minIndex]) {
+                    minIndex = j;
+                }
+            }
+            // Swap the minimum element with the current element
+            if (minIndex !== i) {
+                const temp = this.a[i];
+                this.a[i] = this.a[minIndex];
+                this.a[minIndex] = temp;
+            }
+        }
+    }
 }
 
-//module.exports = Sorter;
+module.exports = Sorter;
