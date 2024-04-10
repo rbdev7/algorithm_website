@@ -62,7 +62,7 @@ class Sorter {
      * Best Time Complexity: O(n^2)
      * Space Complexity: O(1)
      */
-    selectionSort() {
+    * selectionSort() {
         const n = this.a.length;
         for (let i = 0; i < n - 1; i++) {
             let minIndex = i;
@@ -77,6 +77,7 @@ class Sorter {
                 this.a[i] = this.a[minIndex];
                 this.a[minIndex] = temp;
             }
+            yield;
         }
     }
 }
